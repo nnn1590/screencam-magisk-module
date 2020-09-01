@@ -3,6 +3,7 @@
 # Enable glob and disable history expansion
 set +fH
 
+[ "${#}" -le "1" ] && { echo "Usage: ${0} flavour version"; echo "Example: ${0} fdroid 2.0.3"; exit; }
 # Env variables
 flavour="${1}"
 version="${2}"
