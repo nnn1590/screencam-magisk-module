@@ -3,13 +3,15 @@
 # Enable glob and disable history expansion
 set +fH
 
-[ "${#}" -le "1" ] && { echo "Usage: ${0} flavour version"; echo "Example: ${0} fdroid 2.0.3"; exit; }
+[ "${#}" -le "1" ] && { echo "Usage: ${0} flavour version [SigningKey] [SigningKeyAlias]"; echo "Example: ${0} fdroid 2.0.3 ~/android-release-key.keystore key0"; exit; }
 # Env variables
 flavour="${1}"
 version="${2}"
+[ ! "x${3}X" = "xX" ] && SigningKey="${3}"
+[ ! "x${4}X" = "xX" ] && SigningKeyAlias="${4}"
 file="ScreenCam-Magisk-V${version}-${flavour}"
 
-read -sp "Enter Keystore Password: " keyPass
+read -sp "Enter Keystore Password: " keyPass; echo
 read -sp "Enter Alias Password. Leave empty to use keystore password: " aliasPass
 [ "x${aliasPass}X" = "xX" ] && aliasPass="${keyPass}"
 
